@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        h1 {
+            font-size: 100px;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            width: 600px;
+            margin: 200px auto 0px auto;
+        }
+
+        h2 {
+            margin-top: 0px;
+            text-align: center;
+            font-size: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="clock"></h1>
+        <h2 id="datedisplay"></h2>
+    </div>
+    <script>
+        datedisplay = document.getElementById("datedisplay");
+        date = new Date();
+        day = date.getDay();
+        month = date.getMonth();
+        year = date.getYear();
+        dayname = "";
+        switch (day) {
+            case 1: dayname = "Monday"; break;
+            case 2: dayname = "Tuesday"; break;
+            case 3: dayname = "Wednessday"; break;
+            case 4: dayname = "Tursday"; break;
+            case 5: dayname = "Fridey"; break;
+            case 6: dayname = "Saturday"; break;
+            case 7: dayname = "Sunday"; break;
+        }
+        switch (month) {
+            case 1: month = "January"; break;
+            case 2: month = "February"; break;
+            case 3: month = "March"; break;
+            case 4: month = "April"; break;
+            case 1: month = "May"; break;
+            case 6: month = "June"; break;
+            case 7: month = "July"; break;
+            case 8: month = "Augest"; break;
+            case 9: month = "September"; break;
+            case 10: month = "Octorber"; break;
+            case 11: month = "November"; break;
+            case 12: month = "December"; break;
+        }
+        year = parseInt(year);
+        year = year + 1900;
+        datestatement = dayname + " " + month + " " + year;
+        datedisplay.innerHTML = datestatement;
+        clock = document.getElementById("clock");
+        function showtime() {
+            clock.style.color = "red";
+            date = new Date();
+            hour = date.getHours();
+            minit = date.getMinutes();
+            second = date.getSeconds();
+            session = "AM";
+
+
+            if (hour > 12) {
+                session = "PM";
+                hour = hour - 12;
+            }
+
+            if (hour == 0) {
+                hour = 12;
+            }
+
+            if (hour < 10) {
+                hour = "0" + hour;
+            }
+            if (minit < 10) {
+                minit = "0" + minit;
+            }
+            if (second < 10) {
+                second = "0" + second;
+            }
+            time = hour + ":" + minit + ":" + second + " " + session;
+            clock.innerHTML = time;
+            setTimeout(function () { showtime() }, 1000);
+        }
+
+        showtime();
+    </script>
+</body>
+
+</html>
